@@ -1,9 +1,10 @@
 from flask import Flask,render_template
 app=Flask(__name__)
-from flask_bootstrap import Bootstrap
-bootstrap=Bootstrap(app)
+#from flask_bootstrap import Bootstrap
+#bootstrap=Bootstrap(app)
+from flask import request
 
-#@app.route('/')
+
 #def index():
 #    return '<h1>hello flask</h1>'
 @app.route('/user/<name>')
@@ -13,9 +14,12 @@ def user(name):
 def index():
     return render_template('base.html')
 
-@app.route('/upload')
-def upload():
-    return render_template('upload.html')
 
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        f = request.files['the_file']
+        f.save('/var/www/uploads/uploaded_file.txt')
+    return render_template('upload.html')
 if __name__=='__main__':
     app.run(host='0.0.0.0')
