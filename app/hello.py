@@ -10,9 +10,12 @@ bootstrap=Bootstrap(app)
 def user(name):
     return '<h1>hello,%s</h1>'%name
 @app.route('/')
-def indexr():
+def index():
     return render_template('base.html')
 
+@app.route('/upload')
+def upload():
+    return render_template('upload.html')
 
 if __name__=='__main__':
-    app.run()
+    app.run(host='0.0.0.0')
