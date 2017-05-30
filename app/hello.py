@@ -13,12 +13,16 @@ def user(name):
 @app.route('/')
 def index():
     return render_template('base.html')
-
-@app.route('/form')
+@app.route('/form',methods=['GET','POST'])
 def form():
     if request.method=='POST':
-        username=request.form.get('text')
-    return '<p>%s</p>'%username
+         f= request.form
+         return '<h1>%s</h1>'%f
+#    return render_template('form.html')
+         username=request.form.get('username')
+         return '<p>%s</p>'%username
+         print '<p>%s</p>'%username
+#    return render_template('form.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
