@@ -1,7 +1,7 @@
 from flask import Flask,render_template
 app=Flask(__name__)
-#from flask_bootstrap import Bootstrap
-#bootstrap=Bootstrap(app)
+from flask_bootstrap import Bootstrap
+bootstrap=Bootstrap(app)
 from flask import request
 from werkzeug import secure_filename
 
@@ -14,6 +14,9 @@ def user(name):
 def index():
     return render_template('base.html')
 
+@app.route('/form')
+def form():
+    return render_template('form.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
