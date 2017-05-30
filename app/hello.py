@@ -16,7 +16,9 @@ def index():
 
 @app.route('/form')
 def form():
-    return render_template('form.html')
+    if request.method=='POST':
+        username=request.form.get('text')
+    return '<p>%s</p>'%username
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
