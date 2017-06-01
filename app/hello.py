@@ -3,7 +3,8 @@ app=Flask(__name__)
 from flask_bootstrap import Bootstrap
 bootstrap=Bootstrap(app)
 from flask import request
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
+from os import path
 
 #def index():
 #    return '<h1>hello flask</h1>'
@@ -17,19 +18,27 @@ def index():
 def form():
     if request.method=='POST':
          f= request.form
-         return '<h1>%s</h1>'%f
+         # return '<h1>%s</h1>'%f
 #    return render_template('form.html')
          username=request.form.get('username')
+         # return render_template('form.html', method=request.method)
          return '<p>%s</p>'%username
-         print '<p>%s</p>'%username
+    return render_template('form.html', method=request.method)
 #    return render_template('form.html')
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
         f = request.files['file']
-        return '<h1>%s</h1>'%f.filename
-        f.save(secure_filename(f.filename))
+        # return '<h1>%s</h1>'%f.filename
+        abspath=path.abspath(path.dirname(__file__))
+        # return '%s'%abspath
+        uploadpath=path.join(abspath,'static/uploads')
+        # return '%s'%uploadpath
+        f.save(uploadpath+f.filename )
+        # f.save(uploadpath,secure_filename(f.filename ))
+
     return render_template('upload.html')
 if __name__=='__main__':
-    app.run(host='0.0.0.0',port='5000')
+    app.run(debug='True')
+    # app.run(host='0.0.0.0',port='5000')
