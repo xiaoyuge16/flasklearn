@@ -5,7 +5,6 @@ from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
-# app.config['SERCRET_KEY']='haosy666'
 
 @app.route('/')
 def hello_world():
