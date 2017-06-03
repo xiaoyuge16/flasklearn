@@ -1,9 +1,11 @@
-from flask import Flask, render_template, request
+# -*- coding: utf-8 -*-
+from flask import Flask, render_template, request, flash
 from flask_bootstrap import Bootstrap
+
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
-
+# app.config['SERCRET_KEY']='haosy666'
 
 @app.route('/')
 def hello_world():
@@ -14,7 +16,7 @@ def hello_world():
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     # if request.method == 'POST':
-    #     return render_template('form.html', method=request.method)
+        # flash(u'你的提交方法是POST')
     return render_template('form.html', method=request.method)
 
 
