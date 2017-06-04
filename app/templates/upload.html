@@ -1,6 +1,7 @@
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 {% block title %}upload{% endblock %}
 {%block body%}
+    {{ super() }}
   <form action="/upload" method="post" enctype="multipart/form-data" >
     <div class="form-group">
       <label for="fileload" >上传选中的文件</label>
